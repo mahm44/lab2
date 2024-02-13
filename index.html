@@ -1,16 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme = "dark">
 <head>
+    <!-- set up webpage, create links to mapbox source and css style-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ggr472 Lab 2 Webmap </title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css'
 rel='stylesheet'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+    crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" >
 </head>
 <body>
-    <div id="my-map" class="map-container"></div>
+    <div class = "container">
+        <!-- webpage header -->
+        <div class = "container">
+            <div class = "heading">
+                <h1> Popular Airport Routes In Canada </h1>
+                <p> The map below features the top 5 most travelled domestic flight <br>
+                    routes between international airports in Canada
+                </p>
+            </div>
+        </div>
+        <div class = "row">
+            <!-- underneath header, insert informative links and instructions -->
+            <p>
+                <a target ="_blank" href="https://aviationsourcenews.com/analysis/calgary-to-vancouver-the-busiest-flights-in-canada/#:~:text=Calgary%2DVancouver%20Is%20The%20Busiest%20Route%20in%20Canada%E2%80%A6&text=Then%20in%20third%20is%20the,day%20between%20the%20two%20cities.
+                "> Most Common Routes between Canadian International Airports </a>
+            </p>
+            <p> Try zooming in and out of the map, and dragging along the globe to view different locations! </p>
+        </div>
+        <!-- map-container object that calls upon the map object specified in the script.js-->
+        <div id="my-map" class="map-container"></div>
+    </div>
+    <!-- in the empty space beside the map container, enter in links to the data sources. 
+    alignment is corrected in the style.cs file -->
+    <div class = "ground">
+        <p>See the following links to the file <br> sources <br>
+        
+        <a  target ="_blank" href="https://raw.githubusercontent.com/mahm44/lab2/main/airportPoints.geojson"> 
+            Airports GeoJSON </a> <br>
+        <a  target ="_blank" href="https://studio.mapbox.com/tilesets/mahm.3007dieb"> Airport Routes Vector Tileset </a>
+    </p>
+    </div>
+    <!-- link to javascript file -->
     <script src="script.js"></script>
 </body>
 </html>

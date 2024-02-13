@@ -1,48 +1,49 @@
+
+// access custom mapbox style 
 mapboxgl.accessToken =  'pk.eyJ1IjoibWFobSIsImEiOiJjbHJiaTVkanowb3lzMndwcnYwN3ZleGJkIn0.6g4SedBzopOipcNKBKj3lg';
 
+// create map object, and its characteristics upon loading 
 const map = new mapboxgl.Map ({
     container: 'my-map',
     style: 'mapbox://styles/mahm/cls29mb1u01qn01o852ize7dt',
-    center: [-85, 55], // CHNAGE COORDS AND ZOOM 
-    zoom: 4
+    center: [-85, 55], // coords upon load
+    zoom: 3 // zoom upon load 
 });
 
+// once website is loaded, access the map object 
 map.on('load', () => {
     // add data soruce from geojson
     map.addSource('airports-data', {
         type: 'geojson',
-        data: 'airportPoints.geojson' // ADD UPDATED AIRPORTS GEOJSON 
+        data: 'https://raw.githubusercontent.com/mahm44/lab2/main/airportPoints.geojson' // geojson hosted on github
         });
 
+    // add a layer on the map using the point data from the geojson 
     map.addLayer({
         'id': 'airports-points',
-        'type': 'circle',
+        'type': 'circle', // for point data 
         'source': 'airports-data',
         'paint': {
-            'circle-radius': 10,
+            'circle-radius': 5,
             'circle-color': '#007cbf'
         }
     });
-
-    map.addSource('airports-shapes-data', { // UPDATE -- Create your own source ID
+    // add data source from mapbox vector tileset 
+    map.addSource('airports-routes-data', { 
         'type': 'vector',
-        'url': '' // ADD NEW TOURIST SPOT VECTOR TILESET 
+        'url': 'https://studio.mapbox.com/tilesets/mahm.3007dieb' // vector tileset link on mapbox 
         });
     map.addLayer({
-        'id': 'tracts', // Create your own layer ID
-        'type': 'fill', // Note this is different to point data
-        'source': '', // Must match source ID from addSource Method
+        'id': 'routes', // cusotm layer ID
+        'type': 'string', // for LineString data 
+        'source': 'airports-routes-data', 
         'paint': {
-            'fill-color': '#888888', // Test alternative colours and style properties
-            'fill-opacity': 0.4,
-            'fill-outline-color': 'black'
+            'stroke': '#88880', 
+            'stroke-opacity': 1,
+            'stroke-width': 3
         },
-        'source-layer': '' // UPDATE -- Tileset NAME (diff to ID), get this from mapbox
-       // tileset page
+        'source-layer': 'airportRoutes-2sai4t' // layer name from mapbox 
     },
         'airports-data' // Drawing order - places layer below points
-        // Here the addlayer method takes 2 arguments (the layer as an object and a
-        //string for another layer's name). If the other layer already exists, the new layer
-        //will be drawn before that one
     );
 })
